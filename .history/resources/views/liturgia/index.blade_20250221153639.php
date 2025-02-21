@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +10,6 @@
             font-family: "Times New Roman", serif;
             background-color: #f8f9fa;
         }
-
         .container {
             max-width: 800px;
             background: white;
@@ -19,14 +17,12 @@
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
-
         .title {
             font-size: 24px;
             font-weight: bold;
             text-transform: uppercase;
             text-align: center;
         }
-
         .section-title {
             font-size: 20px;
             font-weight: bold;
@@ -34,12 +30,10 @@
             border-bottom: 2px solid #000;
             padding-bottom: 5px;
         }
-
         .reading {
             font-style: italic;
             font-size: 18px;
         }
-
         .reading-text {
             margin-top: 10px;
             font-size: 16px;
@@ -47,7 +41,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container mt-5 border border-danger">
         <div class="title">Liturgia</div>
@@ -56,24 +49,15 @@
 
         @if ($liturgia)
             <div class="text-center mt-3">
-                <h2 class="text-danger title">{{ $liturgia['liturgia'] }}</h2>
+                <h2 class="text-danger title" >{{ $liturgia['liturgia'] }}</h2>
                 <p><strong>Data:</strong> {{ $liturgia['data'] }}</p>
                 <p><strong></strong>
-                    <span class="text-uppercase"
-                        style="color: {{ \App\Helpers\LiturgiaHelper::traduzirCorLiturgica($liturgia['cor']) }}; font-weight: bold;">
-                        Cor: Verde
+                    <span class="title"  style="color: {{ \App\Helpers\LiturgiaHelper::traduzirCorLiturgica($liturgia['cor']) }}; font-weight: bold;">
+Verde
                     </span>
                 </p>
 
             </div>
-            <br>
-            <br>
-            <div class="fw-light text-danger ">Antifona de Entrada</div>
-            <p class="reading">{{ $liturgia['antifonas']['entrada'] }}</p>
-            <br>
-            <br>
-            <h4 class="fw-semibold fst-italic text-danger left">Oração do Dia</h4>
-            <p class="reading">{{ $liturgia['dia'] }}</p>
             <br>
             <br>
             <div class="title text-danger ">Primeira Leitura</div>
@@ -83,27 +67,7 @@
             <br>
             <br>
 
-            <div class="title text-danger">Salmo Responsorial</div>
-            <p class="reading">{{ $liturgia['salmo']['referencia'] }}</p>
-
-            @php
-                $salmoTexto = $liturgia['salmo']['texto'];
-                $refrão = isset($liturgia['salmo']['refrao']) ? "† " . $liturgia['salmo']['refrao'] : '';
-                $versos = explode('—', $salmoTexto); // Divide o texto no caractere '—'
-            @endphp
-
-            @foreach ($versos as $verso)
-                @if (!empty(trim($verso)))
-                    <p class="reading-text">— {{ trim($verso) }}</p>
-                    @if (!empty($refrão))
-                        <p class="fw-bold">{{ $refrão }}</p>
-                    @endif
-                @endif
-            @endforeach
-
-            @if (
-                !empty($liturgia['segundaLeitura']['referencia']) &&
-                    $liturgia['segundaLeitura']['texto'] !== 'Não há segunda leitura hoje!')
+            @if(!empty($liturgia['segundaLeitura']['referencia']) && $liturgia['segundaLeitura']['texto'] !== "Não há segunda leitura hoje!")
                 <div class="title text-danger">Segunda Leitura</div>
                 <p class="reading">{{ $liturgia['segundaLeitura']['referencia'] }}</p>
                 <p class="reading-text">{{ $liturgia['segundaLeitura']['texto'] }}</p>
@@ -112,32 +76,23 @@
                 <br>
             @endif
 
+
+
+            <div class="title text-danger">Salmo</div>
+            <p class="reading">{{ $liturgia['salmo']['referencia'] }}</p>
+            <p class="reading-text">{{ $liturgia['salmo']['texto'] }}</p>
+
+
             <br>
             <br>
             <div class="title text-danger">Evangelho</div>
             <p class="reading">{{ $liturgia['evangelho']['referencia'] }}</p>
             <p class="reading-text">{{ $liturgia['evangelho']['texto'] }}</p>
-            <br>
-            <br>
-            <h4 class="fw-semibold fst-italic text-danger left">Oração das Oferendas</h4>
-            <p class="reading">{{ $liturgia['oferendas'] }}</p>
-            <br>
-            <br>
-            <div class="fw-light text-danger ">Antifona de Comunhão</div>
-            <p class="reading">{{ $liturgia['antifonas']['entrada'] }}</p>
-            <br>
-            <br>
-            <h4 class="fw-semibold fst-italic text-danger left">Oração pós Comunhão</h4>
-            <p class="reading">{{ $liturgia['comunhao'] }}</p>
-
         @else
             <div class="alert alert-danger mt-4">
                 Não foi possível carregar a liturgia. Tente novamente mais tarde.
             </div>
         @endif
     </div>
-    <br>
-    <br>
 </body>
-
 </html>

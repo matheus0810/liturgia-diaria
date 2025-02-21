@@ -72,7 +72,7 @@
             <p class="reading">{{ $liturgia['antifonas']['entrada'] }}</p>
             <br>
             <br>
-            <h4 class="fw-semibold fst-italic text-danger left">Oração do Dia</h4>
+            <h4 class="fw-semibold fst-italic text-danger left" style="font-family: 'Times New Roman', Times, serif;">Oração do Dia</h4>
             <p class="reading">{{ $liturgia['dia'] }}</p>
             <br>
             <br>

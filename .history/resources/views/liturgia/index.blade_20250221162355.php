@@ -52,7 +52,7 @@
     <div class="container mt-5 border border-danger">
         <div class="title">Liturgia</div>
 
-        {{-- @dump($liturgia) --}}
+        @dump($liturgia)
 
         @if ($liturgia)
             <div class="text-center mt-3">
@@ -127,7 +127,7 @@
             <p class="reading">{{ $liturgia['antifonas']['entrada'] }}</p>
             <br>
             <br>
-            <h4 class="fw-semibold fst-italic text-danger left">Oração pós Comunhão</h4>
+            <h4 class="fw-semibold fst-italic text-danger left">Oração do Dia</h4>
             <p class="reading">{{ $liturgia['comunhao'] }}</p>
 
         @else

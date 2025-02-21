@@ -52,7 +52,7 @@
     <div class="container mt-5 border border-danger">
         <div class="title">Liturgia</div>
 
-        {{-- @dump($liturgia) --}}
+        @dump($liturgia)
 
         @if ($liturgia)
             <div class="text-center mt-3">
@@ -125,11 +125,6 @@
             <br>
             <div class="fw-light text-danger ">Antifona de Comunhão</div>
             <p class="reading">{{ $liturgia['antifonas']['entrada'] }}</p>
-            <br>
-            <br>
-            <h4 class="fw-semibold fst-italic text-danger left">Oração pós Comunhão</h4>
-            <p class="reading">{{ $liturgia['comunhao'] }}</p>
-
         @else
             <div class="alert alert-danger mt-4">
                 Não foi possível carregar a liturgia. Tente novamente mais tarde.

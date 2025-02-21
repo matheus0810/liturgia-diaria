@@ -52,7 +52,7 @@
     <div class="container mt-5 border border-danger">
         <div class="title">Liturgia</div>
 
-        {{-- @dump($liturgia) --}}
+        @dump($liturgia)
 
         @if ($liturgia)
             <div class="text-center mt-3">
@@ -96,7 +96,7 @@
                 @if (!empty(trim($verso)))
                     <p class="reading-text">— {{ trim($verso) }}</p>
                     @if (!empty($refrão))
-                        <p class="fw-bold">{{ $refrão }}</p>
+                        <p class="reading-text font-weight-bold text-primary">{{ $refrão }}</p>
                     @endif
                 @endif
             @endforeach
@@ -117,27 +117,12 @@
             <div class="title text-danger">Evangelho</div>
             <p class="reading">{{ $liturgia['evangelho']['referencia'] }}</p>
             <p class="reading-text">{{ $liturgia['evangelho']['texto'] }}</p>
-            <br>
-            <br>
-            <h4 class="fw-semibold fst-italic text-danger left">Oração das Oferendas</h4>
-            <p class="reading">{{ $liturgia['oferendas'] }}</p>
-            <br>
-            <br>
-            <div class="fw-light text-danger ">Antifona de Comunhão</div>
-            <p class="reading">{{ $liturgia['antifonas']['entrada'] }}</p>
-            <br>
-            <br>
-            <h4 class="fw-semibold fst-italic text-danger left">Oração pós Comunhão</h4>
-            <p class="reading">{{ $liturgia['comunhao'] }}</p>
-
         @else
             <div class="alert alert-danger mt-4">
                 Não foi possível carregar a liturgia. Tente novamente mais tarde.
             </div>
         @endif
     </div>
-    <br>
-    <br>
 </body>
 
 </html>

@@ -52,7 +52,7 @@
     <div class="container mt-5 border border-danger">
         <div class="title">Liturgia</div>
 
-        {{-- @dump($liturgia) --}}
+        @dump($liturgia)
 
         @if ($liturgia)
             <div class="text-center mt-3">
