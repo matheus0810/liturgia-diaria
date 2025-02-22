@@ -131,7 +131,7 @@
             let versos = texto.split("—").map(verso => verso.trim()).filter(verso => verso !== "");
             let salmoHTML = versos.map(verso => `
                 <p class="reading-text">— ${verso}</p>
-                <p class="fw-bold text-danger">† ${refrao}</p>
+                <p class="fw-bold text-bold">† ${refrao}</p>
             `).join("");
             return salmoHTML;
         }
