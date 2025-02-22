@@ -18,6 +18,7 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid red !important; /* Garante que a borda vermelha sempre apareça */
         }
 
         .title {
@@ -25,14 +26,6 @@
             font-weight: bold;
             text-transform: uppercase;
             text-align: center;
-        }
-
-        .section-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-top: 20px;
-            border-bottom: 2px solid #000;
-            padding-bottom: 5px;
         }
 
         .reading {
@@ -49,7 +42,7 @@
 </head>
 
 <body>
-    <div class="container mt-5 border border-danger">
+    <div class="container mt-5 border border-danger d-block d-md-block">
         <div class="title">Liturgia</div>
 
         <div id="liturgia-content">
@@ -136,10 +129,10 @@
 
         function formatarSalmo(texto, refrao) {
             let versos = texto.split("—").map(verso => verso.trim()).filter(verso => verso !== "");
-            let salmoHTML = versos.map(verso => `<p class="reading-text">— ${verso}</p>`).join("");
-            if (refrao) {
-                salmoHTML += `<p class="fw-bold">† ${refrao}</p>`;
-            }
+            let salmoHTML = versos.map(verso => `
+                <p class="reading-text">— ${verso}</p>
+                <p class="fw-bold text-danger">† ${refrao}</p>
+            `).join("");
             return salmoHTML;
         }
 
