@@ -70,6 +70,16 @@
                 }
                 const liturgia = await response.json();
 
+                let segundaLeituraHtml = '';
+                if (liturgia.segundaLeitura && liturgia.segundaLeitura.texto && liturgia.segundaLeitura.texto !== 'Não há segunda leitura hoje!' && liturgia.segundaLeitura.texto !== 'undefined') {
+                    segundaLeituraHtml = `
+                        <div class="title text-danger">Segunda Leitura</div>
+                        <p class="reading">${liturgia.segundaLeitura.referencia}</p>
+                        <p class="reading-text">${liturgia.segundaLeitura.texto}</p>
+                        <br><br>
+                    `;
+                }
+
                 const liturgiaContent = document.getElementById("liturgia-content");
                 liturgiaContent.innerHTML = `
                     <div class="text-center mt-3">
@@ -101,12 +111,7 @@
                     ${formatarSalmo(liturgia.salmo.texto, liturgia.salmo.refrao)}
                     <br><br>
 
-                    ${liturgia.segundaLeitura && liturgia.segundaLeitura.texto !== 'Não há segunda leitura hoje!'
-                        ? `<div class="title text-danger">Segunda Leitura</div>
-                            <p class="reading">${liturgia.segundaLeitura.referencia}</p>
-                            <p class="reading-text">${liturgia.segundaLeitura.texto}</p>
-                            <br><br>`
-                        : ''}
+                    ${segundaLeituraHtml}
 
                     <div class="title text-danger">Evangelho</div>
                     <p class="reading">${liturgia.evangelho.referencia}</p>
