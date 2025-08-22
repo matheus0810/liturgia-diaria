@@ -55,6 +55,10 @@
         <div id="error-message" class="alert alert-danger mt-4 d-none">
             Não foi possível carregar a liturgia. Tente novamente mais tarde.
         </div>
+                <!-- Botão para copiar -->
+        <div class="text-center mt-4">
+            <button id="copy-btn" class="btn btn-danger">Copiar Liturgia</button>
+        </div>
     </div>
 
     <script>
@@ -138,6 +142,22 @@
             `).join("");
             return salmoHTML;
         }
+
+                document.getElementById("copy-btn").addEventListener("click", () => {
+            const liturgiaContent = document.getElementById("liturgia-content");
+            const range = document.createRange();
+            range.selectNode(liturgiaContent);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                alert("Liturgia copiada com sucesso!");
+            } catch (err) {
+                alert("Não foi possível copiar.");
+            }
+            selection.removeAllRanges();
+        });
 
         fetchLiturgia();
     </script>
